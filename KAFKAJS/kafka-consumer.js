@@ -9,7 +9,7 @@ const kafka = new Kafka({
 const consumer = kafka.consumer({ groupId: 'test-group' })
 app.use(express.json())
 
-app.get('/createSubscription', async (req, res) => {
+app.get('/getMessages', async (req, res) => {
     const topicName=req.query.TOPIC_NAME;
     const run = async () => {
         await consumer.connect()
@@ -25,6 +25,6 @@ app.get('/createSubscription', async (req, res) => {
         })
     }
     run();
-    res.send("finish");
+    res.send("Getting Messages ...");
 });
 app.listen(3002)

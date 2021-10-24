@@ -8,7 +8,7 @@ const kafka = new Kafka({
 const producer = kafka.producer()
 app.use(express.json())
 
-app.get('/createMessage', async (req, res) => {
+app.get('/StartMessaging', async (req, res) => {
     const topicName=req.query.TOPIC_NAME;
     const message=[{
         "key":"Name",
@@ -28,6 +28,6 @@ app.get('/createMessage', async (req, res) => {
         setInterval(sendMessage, 3000)
     }
     run().catch(e => console.error(`[example/producer] ${e.message}`, e))
-    res.send("vetri");
+    res.send("Started Messaging");
 });
 app.listen(3001)
