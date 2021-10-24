@@ -36,12 +36,17 @@ app.post('/createTopic', async (req, res) => {
     try {
         const { TOPIC_NAMES } = req.body;
         console.log(TOPIC_NAMES);
-
-        await admin.createTopics(
+        console.log("HELLo");
+       await admin.createTopics(
             {
                 topics: TOPIC_NAMES
+            }).then((res2)=>{
+                console.log(res2);
+                res.send("CREATED THE TOPICS " + TOPIC_NAMES);
+            }).catch((err)=>{
+                res.send("Unable to Create Because of " + err);
             })
-        res.send("CREATED THE TOPICS " + TOPIC_NAMES);
+        
     } catch (err) {
         res.send("Unable to Create Because of " + err);
     }
